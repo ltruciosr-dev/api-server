@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api_users:
+    build: ./api_users
+    container_name: api_users
+    environment:
+      DATABASE_HOST: 172.31.82.228
+      DATABASE_PORT: 5432
+      DATABASE_NAME: core_users
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    ports:
+      - "8001:8080"
+
+  api_transactions:
+    build: ./api_transactions
+    container_name: api_transactions
+    environment:
+      DATABASE_HOST: 172.31.82.228
+      DATABASE_PORT: 5433
+      DATABASE_NAME: core_transactions
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    ports:
+      - "8002:8080"
+
+  api_metas:
+    build: ./api_metas
+    container_name: api_metas
+    environment:
+      DATABASE_HOST: 172.31.82.228
+      DATABASE_PORT: 5434
+      DATABASE_NAME: ml_metas
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    ports:
+      - "8003:8080"
