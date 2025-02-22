@@ -1,11 +1,20 @@
 # api_metas/main.py
 import os
 from fastapi import FastAPI, HTTPException, Path
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import psycopg2
 
 app = FastAPI(title="API Metas")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can also use ["*"] to allow all origins, but be cautious in production.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Database connection for ML METAS
 DB_HOST = os.getenv("DATABASE_HOST", "172.31.82.228")
