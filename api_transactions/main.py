@@ -92,7 +92,7 @@ def get_user_transactions(user_id: int):
             UNION
             SELECT id, user_id, amount, merchant, account_type, status FROM transactions_paypal WHERE user_id = %s
             UNION
-            SELECT id, user_id, amount, merchant, account_type, status FROM transactions_internal WHERE user_id = %s
+            SELECT id, sender_id, amount, NULL, account_type, status FROM transactions_internal WHERE sender_id = %s
         """
         cur.execute(query, (user_id, user_id, user_id))
         transactions = cur.fetchall()
